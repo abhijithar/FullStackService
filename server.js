@@ -3,20 +3,21 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var userRepo = require('./repos/user-repo')
+var projectRepo = require('./repos/project-repo')
 
 var app = express()
 app.use(bodyParser.json());
 app.use(cors());
+
+app.get('/', (req, res) => {
+    console.log('Service up and running');
+})
 
 app.get('/users', (req, res) => {
     userRepo.getUsers((err, users) => {
         if (err) throw error;
         res.json(users);
     })
-})
-
-app.get('/', (req, res) => {
-    console.log('Service up and running');
 })
 
 app.post('/users', (req, res) => {
@@ -36,6 +37,21 @@ app.delete('/users/:id', (req, res) => {
         if (err) throw err;
         res.status(202).json(data);
     })
+
+})
+
+app.get('/projects', (req, res) => {
+    projectRepo.getProjects((err, projects) => {
+        if (err) throw error;
+        res.json(projects);
+    })
+})
+
+app.post('/projects', (req, res) => {
+
+    var project = req.body;
+    projectRepo.addProject(project);
+    res.status(201).json({ message: 'Project added successfully' });
 
 })
 
