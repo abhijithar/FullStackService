@@ -20,7 +20,6 @@ function addProject(project) {
     const projectObj = new projectModel.Project(project);
     projectObj.save()
         .then(() => {
-            console.log('Project added successfully');
         });
 
 }

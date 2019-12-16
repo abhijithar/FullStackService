@@ -7,7 +7,7 @@ const projectSchema = new Schema({
     startDate: {type: Date},
     endDate: {type: Date},
     priority: {type: Number},    
-    manager_id: {type: Number},
+    manager_Id: {type: String},
 });
 
 const Project = mongoose.model('Project', projectSchema);
