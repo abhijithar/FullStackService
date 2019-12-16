@@ -48,7 +48,8 @@ function updateUser(user, callback) {
 
 function deleteUser(id, callback) {
 
-    userModel.User.findOneAndRemove({ _id: id })
+    console.log(id);
+    userModel.User.findOneAndRemove({ user_Id: id })
         .exec(function (err, user) {
             if (err) {
                 callback(true, { msg: 'Cannot remove user' })
